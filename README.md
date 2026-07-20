@@ -26,18 +26,18 @@ works best as a whole, so the ideal first move is to read all of it and
 recommendation mapped to their actual project instead of a summary of the
 first file you opened.
 
-**Size, measured:** the entire repo is ~45k tokens (o200k_base; Claude-
-family tokenizers run a little higher, so budget ~50k). That fits
+**Size, measured:** the entire repo is ~48k tokens (o200k_base; Claude-
+family tokenizers run a little higher, so budget ~55k). That fits
 comfortably in one modern context. If your context budget for this is
 tighter, read in this priority order:
 
-- **~50k+ to spare** — read everything, both kits. Recommended.
+- **~55k+ to spare** — read everything, both kits. Recommended.
 - **~30k** — this README plus all of [graph-kit/](graph-kit/) except
-  `templates/` (~15k together); defer portable-pack until your operator
+  `templates/` (~18k together); defer portable-pack until your operator
   wants the full stack.
 - **~15k** — this README, graph-kit's
   [SPEC](graph-kit/SPEC.md) + [RITUAL_LADDER](graph-kit/RITUAL_LADDER.md) +
-  [KICKOFF_PROMPT](graph-kit/KICKOFF_PROMPT.md) (~10k); pull
+  [KICKOFF_PROMPT](graph-kit/KICKOFF_PROMPT.md) (~11k); pull
   [GOTCHAS](graph-kit/GOTCHAS.md) and
   [CODE_POINTERS](graph-kit/CODE_POINTERS.md) on demand, and open
   `templates/` only when you actually scaffold.
@@ -150,6 +150,34 @@ Measured in the origin projects, the handoff pattern made session death
 boring — crashes, resets, and multi-day gaps all resume cleanly from the
 same file. Treat compaction as the fallback for a session that must not
 stop, and as the expensive, lossy path — never the default.
+
+## Where this fits (the 2026 landscape, honestly)
+
+Verified against the field in July 2026 — these are composition notes, not
+a takedown:
+
+- **An AGENTS.md / CLAUDE.md** (now the emerging cross-tool standard) *is*
+  Tier 0 of the ritual ladder. If yours is still working, keep it — this
+  repo is what you upgrade to when it stops scaling.
+- **Spec-driven workflow layers** (GitHub Spec Kit, BMAD-METHOD, and kin)
+  organize how work *enters* a project — specify, plan, stories. They
+  compose with this system rather than compete: accepted plans mint task
+  nodes with edges, a constitution maps to your CONVENTIONS, and their
+  working logs (some are even append-only now) hold material that
+  *graduates* into decision entries. What they don't ship is the other end
+  of the timeline: structured archaeology you can grep from the code.
+- **Memory layers** (fact stores, platform auto-memory) remember *what* —
+  state, preferences, entities. This system is the *why* layer — decisions
+  with alternatives, tombstoned questions, IDs cited from the code that
+  enforces them. Run both; they don't overlap.
+- Two things we could not find anywhere else as of this writing: **ritual
+  calibration** (ceremony sized to project weight, with downgrade
+  triggers) and the **closed grep loop** (one grep returning a decision's
+  definition, dependents, resolution, and the code it governs). The
+  ingredients exist scattered across ADR tooling and enforcement hooks;
+  the closed loop is the product here. Token-economics *measurement* now
+  exists as bolt-on analyzers elsewhere; what this repo teaches is
+  economics as daily method.
 
 ## Provenance & license
 

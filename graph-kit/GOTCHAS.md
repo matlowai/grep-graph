@@ -99,6 +99,22 @@ our topics could that platform actually host?"); counting them produced a
 stronger, quantified rationale than the original entry carried. The
 decision stood, and the appended rationale makes the next re-ask free.
 
+**A11. Bank pasted advice verbatim; adjudicate item-by-item; never silently
+merge.**
+*Trigger:* the operator pastes advice from another AI or an outside expert
+("here's what X thinks we should do").
+Two artifacts, always: the memo VERBATIM in a dated file (evidence — future
+sessions must see what was actually said, not your summary of it), and a
+separate adjudication note walking every item to a verdict — agree / nuance
+/ reject, each with a reason — plus graph edges for whatever gets adopted.
+*Incident:* a design memo from a different model family, banked and
+adjudicated this way, yielded four genuinely new contributions the resident
+model line had missed — ratified into a decision the same day — while items
+that quietly contradicted settled decisions were rejected with cites instead
+of silently overwriting the graph. *Why:* outside advice is a different
+architecture's blind-spot check, but merged unadjudicated it becomes
+anonymous authority nobody can ever re-litigate.
+
 ## B. The shell and the repo (agent mechanics)
 
 **B1. The shell working directory RESETS between commands.**
@@ -150,6 +166,21 @@ being silently skipped). *Incident:* a measured audit found mid-session
 batching waste was only ~4% of spend — but the rehydration ceremony, run
 one-file-per-turn after every context clear, taxed the exact economics
 that make clearing free; one script closed it.
+
+**B7. A dirty tracked config you didn't touch may be the operator's LIVE
+state — never "helpfully" restore it.**
+*Trigger:* git status shows a modified tracked config that your session
+didn't modify.
+A human driving the running product through its UI can mutate tracked
+config (a binding flip, a slider drag) — that diff is their runtime state,
+not dirt. Check the running instance or ask before any restore/stash/
+checkout; once identified, record it by name in the handoff ("<file>:
+<change> = operator live state, do not restore") so later sessions and
+cleanup passes inherit the fence. *Incident:* an operator's live
+voice-binding flip sat uncommitted in a tracked config; a session tidying
+its tree git-restored the file — silently reverting the running product
+under the operator. The handoff line minted afterward made the next
+session's probe read "tree clean EXCEPT <file> = operator data."
 
 ## C. Trusting the wrong evidence
 
@@ -222,6 +253,37 @@ policy correction in one project's history landed AFTER the wrong
 assumption was already baked into code; the cheap moment to catch each one
 was the first pushback.
 
+**D6. Unattended runs schedule their own wakes — and every wake gets a
+triage verdict, not a vibe.**
+*Trigger:* long-running work with nobody watching (overnight runs, an
+operator away for hours).
+Completion notifications are exactly the mechanism that fails (D4), so the
+wake must not depend on them. Size the mechanism to the job: a
+PREDICTABLE-duration job (known steps × measured rate) earns exactly ONE
+scheduled check at expected-completion plus a margin (~20 min) that
+verifies the OUTPUT against spec — artifact present, matches expectations,
+next step launched or a clean report written. UNPREDICTABLE or multi-wave
+work gets the full heartbeat: a timer wake every ~30–60 min (a real
+notification is just an early wake; the timer is the floor) that runs a
+small disk-first watchdog — processes, recent artifact writes, git status,
+subagent-transcript freshness — and branches on its CLASSIFIED verdict:
+still-active → wait · finished-but-unnoticed → integrate (this is the nap
+fingerprint) · stall-suspected → tail logs / re-poke · idle-clean →
+advance or close. Two cost riders when choosing a cadence: ticks keep the
+prompt cache warm only INSIDE the platform's cache TTL (check what it
+actually is — outside it every wake re-writes the whole context at full
+price), and every wake re-bills the session's entire context — a
+large-context session should prefer the single deadline check, delegate
+monitoring to a fresh small context, or close docs and end rather than
+tick all night. Run the coordinator fresh for the run, with a self-close
+context ceiling: coherence degrades well before the window fills.
+*Incidents:* an overnight coordinator launched a wave and waited on
+notifications; two never fired and the whole plan napped for hours until a
+human poked it. The watchdog that fixed it then needed one hardening of
+its own — its process scan couldn't see subagents and nearly classified a
+mid-flight wave as finished-but-unnoticed, which would have committed
+partial work; teach the verdict every activity signal the platform hides.
+
 ## E. Multi-agent additions
 
 **E1. One writer for the graph docs.** During parallel work, only the main
@@ -237,6 +299,35 @@ share a file are one track.
 cross-talk goes through one designated append-only channel file with
 signed, dated entries. *Incident:* an uninvited grep-and-edit in a sibling
 repo was one of the corrections in D5.
+
+**E4. Agents never verify against the live instance — every verify suite
+gets its own namespace, distinct per suite.**
+*Trigger:* delegated work must run a server, browser, or service to verify
+itself, and a live instance (the operator's session, a sibling suite) may
+be up.
+The main session owns the live instance; agents smoke-test against isolated
+ports/profiles/temp-config copies. And the isolation must be DISTINCT per
+suite — two suites sharing one "test port" collide the first time they run
+concurrently. Bake the namespace into the suite itself (env-overridable
+defaults, fail-fast on a busy port with the override's name in the error),
+never leave it to spawn-prompt warnings. *Incident:* two verify suites
+shipped sharing a default debug port; the collision only surfaced under
+concurrent agents. Distinct per-suite port/profile trios plus the
+fail-fast error closed the class — and wave prompts stopped needing
+do-not-use-that-port folklore.
+
+**E5. Two copies of a doc in two repos need a declared canonical and a
+flow direction.**
+*Trigger:* a doc or bundle you maintain now exists in a second repo — a
+gift copy, a spun-out project, a template installed elsewhere.
+Declare in writing, visible from both sides, which copy is canonical and
+which way changes flow ("edits land in A; backport to B only when it helps
+B"). The demoted copy shrinks to a pointer or is labeled a snapshot.
+Otherwise both sides accumulate improvements and silently fork. *Incident:*
+a docs bundle graduated to its own repo; the origin's copy was explicitly
+flipped to "origin snapshot — edits happen in the new home," and a
+spun-out sub-project's directory shrank to a pointer README with a one-way,
+human-mediated backport channel. Neither pair has forked since.
 
 ## F. Machine enforcement and evidence (second deployment additions)
 

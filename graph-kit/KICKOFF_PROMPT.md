@@ -41,15 +41,23 @@ recommend and why, and wait for my confirmation:
    requirement, with heavy thinking done in pseudocode/design notes BEFORE
    real code — the data is never faked, only the sequencing is staged.
 
-6. Subagent policy — will I be delegating work to subagents here, and if
-   so, which model tiers / reasoning-effort levels may I use, with what
-   spend comfort? Two calibrations if yes: the everyday default tier, and
-   what class of work earns your most expensive tier. (Guardrail either
-   way: work that produces or verifies a claim in the project's core
-   domain never delegates below the top tier available; mechanical chores
-   never waste it. If a fuller agent-tier bundle came alongside this kit,
-   its definitions carry the patterns to copy — otherwise I'll record the
-   policy as a ground rule and spawn ad hoc.)
+6. Subagent tiers — if your model stack includes a top-tier model with
+   selectable reasoning effort (low / medium / high / xhigh / max — the
+   "Fable-class" shape of a frontier model line; substitute your
+   provider's top model), do you want those as named subagent options
+   alongside any standard tiers (e.g. `fable-low` … `fable-max`)? If yes,
+   I'll create the definitions: copy the exact patterns from any agent
+   definitions this project already carries (same frontmatter, report
+   contract, and fences — only model and effort change; a fuller
+   agent-tier bundle, if one came alongside this kit, is the best source
+   of patterns), or draft minimal consistent ones if none exist. And two
+   budget questions with that: what's your comfort level on spend for
+   top-tier subagents, and how should the effort levels be calibrated —
+   which is the everyday default, and what class of work earns
+   xhigh/max? (Guardrail either way: work that produces or verifies a
+   claim in the project's core domain — domain substance — never
+   delegates below the top tier available; mechanical chores never
+   waste it.)
 
 Also explain to me, before scaffolding, the context strategy this system
 assumes: explicit /clear + the rehydration file instead of automatic

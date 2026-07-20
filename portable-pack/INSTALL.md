@@ -8,7 +8,7 @@ the project the pack came from.
 | From the pack | Goes to (in the new repo) | Notes |
 |---|---|---|
 | `agents/sonnet-low.md` etc. (6 files incl. `_report-contract.md`) | `.claude/agents/` | project-level agents; **client restart required** to register (see §3) |
-| `upskilling/` (README + 01–09) | `docs/upskilling/` | binding operating procedure; read in full at session start |
+| `upskilling/` (README + 01–12) | `docs/upskilling/` | binding operating procedure; read in full at session start |
 | `graph-templates/CONVENTIONS.md` | `CONVENTIONS.md` (repo root) | read-first operating procedure |
 | `graph-templates/INDEX.md` | `INDEX.md` (repo root) | flat ID ledger; verify every session |
 | `graph-templates/DAG.md` | `DAG.md` (repo root) | execution view of tasks |

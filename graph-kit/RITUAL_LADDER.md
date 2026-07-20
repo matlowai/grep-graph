@@ -187,3 +187,19 @@ is that each also makes the graph more testable or more navigable.)
   into infrastructure (a GitHub Action, a Claude Code hook, a pre-commit
   hook, CI) and forget about. Adopt it as enforcement plumbing when the
   condition really holds, not as daily practice.
+
+- **Reference-clone directory + pin manifest** — *condition: your work
+  regularly studies adjacent code you don't own (upstream repos, prior-art
+  projects, a vendor SDK).* Keep a **gitignored** `reference/` (or
+  `.reference/`) directory for transient shallow clones and study copies —
+  they're bulky, they're other people's licenses, and they don't belong in
+  your history. What IS committed is a small `reference/PINS.md` manifest:
+  one row per pin — name, upstream URL, commit sha, date pulled, license,
+  and one line on why it's pinned. The manifest is the graph-visible part
+  (a `RES-*` node can cite a pin; "verify at the pinned sha" beats "I
+  remember their code"), the clones are disposable and re-fetchable from
+  it. Session-end habit: if you consulted a new repo this session, its row
+  goes in PINS.md before you close. Two standing rules ride along:
+  neighbor clones are READ-ONLY (you study them, never edit them), and a
+  license note is mandatory at pin time — "I'll check before shipping" is
+  how NC-licensed code ends up load-bearing.

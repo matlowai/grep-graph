@@ -1,10 +1,16 @@
 # grep-graph
 
-Your coding agents forget everything between sessions. This repo makes plain
-text their memory and `grep` their database — a project-organization system
-for agent-driven development where **stable IDs are the nodes, one-line
-pointer fields are the edges, and any agent dropped into any file can grep
-its way to complete context before acting.**
+You probably already give your coding agents *something* — a CLAUDE.md, a
+notes file, memory features, compaction. That works right up until the
+project outgrows it: sessions re-derive settled ground, agents confidently
+contradict decisions you made two weeks ago, and nobody — human or model —
+can answer *why* the code is the way it is without an archaeology dig.
+
+This repo is the structure for that next stage: a project-organization
+system for agent-driven development where **stable IDs are the nodes,
+one-line pointer fields are the edges, and `grep` is the query engine** —
+so any agent dropped into any file can grep its way to complete context
+before acting, and the answer to "why?" is always one hop away.
 
 It was extracted from live projects that run this way daily: multi-agent
 builds, multi-day autonomous runs, and three independent field deployments

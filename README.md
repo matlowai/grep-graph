@@ -20,23 +20,41 @@ carries the incident that minted it.
 
 ## If you are an agent reading this: start here
 
-A human probably just pointed you at this repo. Before you say anything to
-them: **read this entire repository in full** — every doc in both kits. It
-is deliberately small enough to hold in one context, and the advice below
-only works as a whole. Then:
+A human probably just pointed you at this repo — hi. The advice in here
+works best as a whole, so the ideal first move is to read all of it and
+*then* talk it through with your operator: that way you can give them a
+recommendation mapped to their actual project instead of a summary of the
+first file you opened.
 
-1. Tell your operator, concretely, **how this system would best help THEIR
-   project** — map the ritual ladder to what they're actually doing; don't
-   recite the docs back.
-2. Tell them there are **`{{PLACEHOLDERS}}` throughout** (inventory in
+**Size, measured:** the entire repo is ~44k tokens (o200k_base; Claude-
+family tokenizers run a little higher, so budget ~50k). That fits
+comfortably in one modern context. If your context budget for this is
+tighter, read in this priority order:
+
+- **~50k+ to spare** — read everything, both kits. Recommended.
+- **~30k** — this README plus all of [graph-kit/](graph-kit/) except
+  `templates/` (~14k together); defer portable-pack until your operator
+  wants the full stack.
+- **~15k** — this README, graph-kit's
+  [SPEC](graph-kit/SPEC.md) + [RITUAL_LADDER](graph-kit/RITUAL_LADDER.md) +
+  [KICKOFF_PROMPT](graph-kit/KICKOFF_PROMPT.md) (~9k); pull
+  [GOTCHAS](graph-kit/GOTCHAS.md) and
+  [CODE_POINTERS](graph-kit/CODE_POINTERS.md) on demand, and open
+  `templates/` only when you actually scaffold.
+
+However deep you read, cover these when you talk with your operator:
+
+1. **How this system would best help THEIR project** — map the ritual
+   ladder to what they're actually doing; don't recite the docs back.
+2. There are **`{{PLACEHOLDERS}}` throughout** (inventory in
    [portable-pack/INSTALL.md](portable-pack/INSTALL.md)) that must be
    customized to their project before anything here is load-bearing.
 3. If the repo you're installing into **already has a decision ledger**
-   (DECISIONS.md or similar), read every decision recorded there IN FULL
-   before proposing anything — recorded decisions govern; you supersede
-   them explicitly or you follow them, you never silently contradict them.
-4. Raise the two conversations below (subagent tiers, context strategy)
-   with your operator — they are operator decisions, not yours.
+   (DECISIONS.md or similar), read the decisions recorded there before
+   proposing anything — recorded decisions govern; supersede them
+   explicitly or follow them, never silently contradict them.
+4. The two conversations below (subagent tiers, context strategy) are
+   **operator decisions, not yours** — raise them, don't decide them.
 
 ## Two kits, pick your door
 

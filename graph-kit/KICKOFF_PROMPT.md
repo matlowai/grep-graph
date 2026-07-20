@@ -41,17 +41,15 @@ recommend and why, and wait for my confirmation:
    requirement, with heavy thinking done in pseudocode/design notes BEFORE
    real code — the data is never faked, only the sequencing is staged.
 
-6. Subagent tiers — if your model stack includes a top-tier (Fable-class)
-   model with selectable reasoning effort (low/medium/high/xhigh/max), do
-   you want those as subagent options alongside the standard tiers? If
-   yes, I'll create them following the exact patterns in the referenced
-   agent definitions (portable-pack/agents/ — same frontmatter, report
-   contract, and fences; only model and effort change). And two budget
-   questions with that: what's your comfort level on spend for top-tier
-   subagents, and how should the effort levels be calibrated — which is
-   the everyday default, and what class of work earns xhigh/max?
-   (Guardrail either way: domain-substance work never delegates below the
-   top tier available; mechanical chores never waste it.)
+6. Subagent policy — will I be delegating work to subagents here, and if
+   so, which model tiers / reasoning-effort levels may I use, with what
+   spend comfort? Two calibrations if yes: the everyday default tier, and
+   what class of work earns your most expensive tier. (Guardrail either
+   way: work that produces or verifies a claim in the project's core
+   domain never delegates below the top tier available; mechanical chores
+   never waste it. If a fuller agent-tier bundle came alongside this kit,
+   its definitions carry the patterns to copy — otherwise I'll record the
+   policy as a ground rule and spawn ad hoc.)
 
 Also explain to me, before scaffolding, the context strategy this system
 assumes: explicit /clear + the rehydration file instead of automatic

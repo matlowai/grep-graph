@@ -30,7 +30,7 @@ rehydration taxes every /clear (04 rule 6).
 4. `DAG.md` — the execution frontier. (And `SPEC.md` in full before any task
    that touches the core design.)
 5. Then grep every ID mentioned in your task before writing anything.
-6. `docs/upskilling/` — README first, then all nine docs. Binding operating
+6. `docs/upskilling/` — README first, then all twelve docs. Binding operating
    procedure; ~5 minutes of reading replaces the expensive way of relearning
    these failure modes. If you are the MAIN session, doc 09 is your job
    description — end rehydration by echoing its operator card to the operator.

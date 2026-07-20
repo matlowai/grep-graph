@@ -7,7 +7,7 @@ the project the pack came from.
 
 | From the pack | Goes to (in the new repo) | Notes |
 |---|---|---|
-| `agents/sonnet-low.md` etc. (6 files incl. `_report-contract.md`) | `.claude/agents/` | project-level agents; **client restart required** to register (see §3) |
+| `agents/sonnet-low.md` etc. (7 files incl. `_report-contract.md` + `README.md`) | `.claude/agents/` | project-level agents; **client restart required** to register (see §3) |
 | `upskilling/` (README + 01–12) | `docs/upskilling/` | binding operating procedure; read in full at session start |
 | `graph-templates/CONVENTIONS.md` | `CONVENTIONS.md` (repo root) | read-first operating procedure |
 | `graph-templates/INDEX.md` | `INDEX.md` (repo root) | flat ID ledger; verify every session |
@@ -67,10 +67,10 @@ matching the filename stem.)
 
 ## 4. `tools/context_probe.py` — one line to edit
 
-The script ships verbatim from the origin project. Its `DEFAULT_PROJECT_DIR`
-constant points at the origin project's Claude-projects session-log directory;
-either edit that constant to your new project's log dir, or always pass the log
-dir explicitly:
+The script's `DEFAULT_PROJECT_DIR` constant ships as a `<your-project-slug>`
+placeholder — edit it to your project's Claude-projects log dir (that makes
+bare `--latest` work), or always pass the log dir/file explicitly (the path
+argument auto-detects: directory = newest .jsonl inside, file = used as-is):
 
 ```
 python tools/context_probe.py --latest /path/to/~/.claude/projects/<your-project-dir>/
@@ -86,8 +86,10 @@ record) is project-generic.
 
 After restart, from the new repo root:
 
-1. `grep -c "{{" -r .claude docs/upskilling CONVENTIONS.md INDEX.md DAG.md CLAUDE.md`
-   → should be 0 (every placeholder filled or its example deleted).
+1. `grep -rc "{{\|your-project-slug" .claude docs/upskilling tools CONVENTIONS.md INDEX.md DAG.md CLAUDE.md`
+   → every count 0 (placeholders filled or example rows deleted — including
+   `DEFAULT_PROJECT_DIR` in tools/context_probe.py, whose placeholder is not
+   `{{ }}`-styled).
 2. `python tools/context_probe.py --latest <your-log-dir>` → prints a
    `context_tokens=… cost_per_turn_usd=…` line (proves the probe finds your logs).
 3. Start a fresh session; it should read the session-start order in CLAUDE.md,

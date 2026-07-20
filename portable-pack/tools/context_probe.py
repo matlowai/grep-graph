@@ -2,9 +2,15 @@
 """Report a Claude Code session's CURRENT context size from its JSONL.
 
 Usage:
-    python tools/context_probe.py <path-to-session.jsonl>
-    python tools/context_probe.py --latest [project_dir]
-    [--threshold N]
+    python tools/context_probe.py <session.jsonl>          # one session file
+    python tools/context_probe.py <project-dir>            # newest .jsonl inside
+    python tools/context_probe.py --latest <project-dir>   # same, explicit
+    python tools/context_probe.py --latest                 # DEFAULT_PROJECT_DIR
+    [--threshold N]   exit 1 when context_tokens > N
+
+The path argument auto-detects: a directory means "use the newest .jsonl in
+it", a file is used directly. Edit DEFAULT_PROJECT_DIR (below) to make bare
+--latest work without an argument.
 """
 
 import argparse
@@ -72,25 +78,26 @@ def rate_for_model(model):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("path", nargs="?", help="path to session.jsonl")
-    parser.add_argument("--latest", action="store_true", help="use newest jsonl")
     parser.add_argument(
-        "project_dir",
+        "path",
         nargs="?",
-        default=DEFAULT_PROJECT_DIR,
-        help="project dir to search with --latest",
+        default=None,
+        help="session .jsonl file, or a project dir (newest .jsonl inside is used)",
+    )
+    parser.add_argument(
+        "--latest",
+        action="store_true",
+        help="with no path: search DEFAULT_PROJECT_DIR for the newest .jsonl",
     )
     parser.add_argument("--threshold", type=int, default=None, help="token threshold")
     args = parser.parse_args()
 
     try:
-        if args.latest:
-            jsonl_path = find_latest_jsonl(args.project_dir)
-        elif args.path:
-            jsonl_path = args.path
-        else:
-            parser.error("must provide a path or --latest")
+        target = args.path or (DEFAULT_PROJECT_DIR if args.latest else None)
+        if target is None:
+            parser.error("must provide a path (file or dir), or --latest")
             return 2
+        jsonl_path = find_latest_jsonl(target) if os.path.isdir(target) else target
 
         message = find_last_usage_record(jsonl_path)
         usage = message.get("usage", {})

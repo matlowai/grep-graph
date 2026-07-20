@@ -26,7 +26,10 @@ rehydration read-in goes in ONE tool operation (a single `cat` of the
 session-start docs), or the clear ceremony itself is taxed once per file —
 every turn re-bills the full context at cache-read rates (~10% of base input
 price). Adopting the whole stack took a daily bill from
-**$231 → $33** with 5/5 clean delegations in a single session. The pack exists
+**$231 → $33** with 5/5 clean delegations in a single session — measured
+honestly but in ONE deployment; treat every number here as a calibration
+starting point, not a promise (the controlled benchmark is an open
+workstream in the repo's TODO.md). The pack exists
 because that top-tier access is ending: most work will run on Opus, and Opus
 inherits whatever is written down — so it is written down here.
 
@@ -35,7 +38,7 @@ inherits whatever is written down — so it is written down here.
 ```
 README.md            — this file: what/why + install recipe
 INSTALL.md           — step-by-step placement in a new repo + placeholder inventory
-agents/              — five delegation-tier agent definitions + the report contract
+agents/              — four delegation-tier agents + a sounding-board role + the report contract
 upskilling/          — the twelve operating-procedure docs + their README
 graph-templates/     — starter CONVENTIONS / INDEX / DAG / SESSION_HANDOFF skeletons
 CLAUDE-template.md   — a CLAUDE.md skeleton wiring it all together

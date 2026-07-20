@@ -12,11 +12,13 @@ one-line pointer fields are the edges, and `grep` is the query engine** —
 so any agent dropped into any file can grep its way to complete context
 before acting, and the answer to "why?" is always one hop away.
 
-It was extracted from live projects that run this way daily: multi-agent
-builds, multi-day autonomous runs, and three independent field deployments
-(a performer engine, a research instrument, a model-training lab) whose
-hard-won lessons are folded back in. Nothing here is theory; every rule
-carries the incident that minted it.
+It was extracted from live projects that run this way daily: the origin
+build (a multi-month, multi-agent project), two further independent field
+deployments of the pack (a research instrument, a model-training lab), and
+two sibling projects run at deliberately lighter ceremony — the ritual
+ladder's three "specimens" are drawn from across that set, not a separate
+trio. Nothing here is theory; every rule carries the incident that minted
+it.
 
 ## If you are an agent reading this: start here
 
@@ -116,8 +118,10 @@ all of them from one place.
 [portable-pack/agents/](portable-pack/agents/) ships delegation-tier
 subagent definitions (mechanical → default executor → hard-but-specified,
 plus a read-only sounding board) and the report contract they share. If the
-operator's stack includes a top-tier **Fable-class model with selectable
-reasoning effort (low / medium / high / xhigh / max)**, the installing
+operator's stack includes a **top-tier model with selectable reasoning
+effort** (low / medium / high / xhigh / max — we shorthand this
+"Fable-class" after the frontier tier we run; substitute your provider's
+top line), the installing
 agent should ASK the operator whether they want those as subagent options
 too — and if yes, create the `fable-low` … `fable-max` definitions
 following the exact patterns in the referenced agents (same frontmatter,

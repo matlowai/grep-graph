@@ -16,15 +16,15 @@ DEC-0001 · ACCEPTED · DECISIONS.md — grep-graph org system adopted.
 Q-{{FAMILY}}1 · OPEN · <location> — <one-line reminder>; ctx: §n; blocks: T-{{TRACK}}2.
 <!-- worked example: every OPEN/PARKED question gets a row here with its edges -->
 
-## Tasks (mirror of DAG.md statuses — DAG.md is the execution view)
-T-{{TRACK}}1 · DONE · DAG.md — <what it was>; blocked-by: DEC-0001.
-T-{{TRACK}}2 · FRONTIER · DAG.md — <what it is>; blocked-by: T-{{TRACK}}1.
+## Tasks
+See DAG.md — the execution view OWNS all task state (statuses live in ONE
+file per node type; a mirrored status here is drift waiting to happen).
+`grep -c "FRONTIER" DAG.md` = startable now · `grep -c "DONE" DAG.md` = shipped.
 
 ## Research findings
 RES-{{TOPIC}}-1 · PINNED · reference/ — <the fact, with "verified live {{DATE}}">.
 
-<!-- HOW TO USE: this is a flat mirror of every ID in the repo. A row per ID,
-     newest appended within its block. `grep -c "OPEN" INDEX.md` tells you how much
-     is left; `grep "T-" INDEX.md` is the task board. Verify it against reality at
-     the end of EVERY session — walk the repo's IDs and confirm each status here is
-     true. Delete nothing; tombstone in place (status flips, edges gain resolved-by). -->
+<!-- HOW TO USE: a thin ROUTER — one row per non-task ID, newest appended within
+     its block; task state lives in DAG.md only. `grep -c "OPEN" INDEX.md` = how
+     much is undecided. Verify against reality at the end of EVERY session. Delete
+     nothing; tombstone in place (status flips, edges gain resolved-by). -->

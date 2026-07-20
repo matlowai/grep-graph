@@ -16,9 +16,12 @@ grep -c "FRONTIER" DAG.md     → how much can start right now
 
 T-{{TRACK}}1 · DONE · <first task — the scaffold everything hangs off>
 blocked-by: DEC-0001
+evidence: <what proved it — e.g. "make test green, demo script runs">
 
 T-{{TRACK}}2 · FRONTIER · <a task whose deps are all done — startable now>
 blocked-by: T-{{TRACK}}1
+evidence: <the observable proof that will mark this DONE — write it at
+  minting time; if you can't state it, the task isn't specified yet>
 ctx: <where to read first before starting this one>
 
 T-{{TRACK}}3 · BLOCKED · <a task waiting on an open question>

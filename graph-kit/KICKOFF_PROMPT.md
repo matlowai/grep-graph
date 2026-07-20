@@ -14,7 +14,11 @@ or human can grep their way to complete context from any single file.
 **Step 1 — Read the kit in full.** Read every file in `docs/graph-kit/`
 (README.md, SPEC.md, RITUAL_LADDER.md, GOTCHAS.md, CODE_POINTERS.md, and
 everything in templates/). Do not skim: the failure catalog and the ritual
-ladder change what you build in step 3.
+ladder change what you build in step 3. **If this repo already carries a
+decision ledger** (DECISIONS.md or similar) or other graph docs, read every
+decision recorded there IN FULL before proposing anything — recorded
+decisions govern; supersede explicitly or follow, never silently
+contradict.
 
 **Step 2 — Calibrate before scaffolding.** Do NOT create any files yet.
 Using the decision table in RITUAL_LADDER.md, ask me these questions (plus
@@ -37,11 +41,31 @@ recommend and why, and wait for my confirmation:
    requirement, with heavy thinking done in pseudocode/design notes BEFORE
    real code — the data is never faked, only the sequencing is staged.
 
+6. Subagent tiers — if your model stack includes a top-tier (Fable-class)
+   model with selectable reasoning effort (low/medium/high/xhigh/max), do
+   you want those as subagent options alongside the standard tiers? If
+   yes, I'll create them following the exact patterns in the referenced
+   agent definitions (portable-pack/agents/ — same frontmatter, report
+   contract, and fences; only model and effort change). And two budget
+   questions with that: what's your comfort level on spend for top-tier
+   subagents, and how should the effort levels be calibrated — which is
+   the everyday default, and what class of work earns xhigh/max?
+   (Guardrail either way: domain-substance work never delegates below the
+   top tier available; mechanical chores never waste it.)
+
+Also explain to me, before scaffolding, the context strategy this system
+assumes: explicit /clear + the rehydration file instead of automatic
+compaction — compaction works but degrades performance and burns more
+tokens because it summarizes less deliberately than a handoff written at a
+seam. Make sure I understand it, because it changes how I'll work with you
+day to day.
+
 Recommend the LOWEST tier the answers support — the ladder says start low
 and upgrade on named triggers, because unearned ritual is a per-session tax
-and a stale graph is worse than no graph. Record the mock-policy answer as
-a ground rule in the instructions file (and as a DEC at Tier 2+) so no
-future session has to re-ask it.
+and a stale graph is worse than no graph. Record the mock-policy answer,
+the subagent-tier/budget answers, and the context-strategy acknowledgement
+as ground rules in the instructions file (and as DECs at Tier 2+) so no
+future session has to re-ask them.
 
 **Step 3 — Scaffold for the confirmed tier.** Copy from
 `docs/graph-kit/templates/` into the repo root and adapt — don't invent your

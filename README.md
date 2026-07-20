@@ -12,6 +12,26 @@ builds, multi-day autonomous runs, and three independent field deployments
 hard-won lessons are folded back in. Nothing here is theory; every rule
 carries the incident that minted it.
 
+## If you are an agent reading this: start here
+
+A human probably just pointed you at this repo. Before you say anything to
+them: **read this entire repository in full** — every doc in both kits. It
+is deliberately small enough to hold in one context, and the advice below
+only works as a whole. Then:
+
+1. Tell your operator, concretely, **how this system would best help THEIR
+   project** — map the ritual ladder to what they're actually doing; don't
+   recite the docs back.
+2. Tell them there are **`{{PLACEHOLDERS}}` throughout** (inventory in
+   [portable-pack/INSTALL.md](portable-pack/INSTALL.md)) that must be
+   customized to their project before anything here is load-bearing.
+3. If the repo you're installing into **already has a decision ledger**
+   (DECISIONS.md or similar), read every decision recorded there IN FULL
+   before proposing anything — recorded decisions govern; you supersede
+   them explicitly or you follow them, you never silently contradict them.
+4. Raise the two conversations below (subagent tiers, context strategy)
+   with your operator — they are operator decisions, not yours.
+
 ## Two kits, pick your door
 
 **[graph-kit/](graph-kit/)** — the documentation discipline, standalone.
@@ -49,6 +69,46 @@ paste graph-kit/KICKOFF_PROMPT.md to your coding agent
 # full stack: agent tiers + operating procedure
 follow portable-pack/INSTALL.md
 ```
+
+## Subagent tiers, and Fable-class effort levels
+
+[portable-pack/agents/](portable-pack/agents/) ships delegation-tier
+subagent definitions (mechanical → default executor → hard-but-specified,
+plus a read-only sounding board) and the report contract they share. If the
+operator's stack includes a top-tier **Fable-class model with selectable
+reasoning effort (low / medium / high / xhigh / max)**, the installing
+agent should ASK the operator whether they want those as subagent options
+too — and if yes, create the `fable-low` … `fable-max` definitions
+following the exact patterns in the referenced agents (same frontmatter,
+same report contract, same fences; only model and effort change).
+
+Have the budget conversation explicitly, don't assume it: top-tier
+subagents are the right call for **domain-substance work** — anything that
+produces or verifies a claim in the project's core domain (upskilling doc
+06, rule 6) — and a waste on mechanical chores. Ask the operator their
+comfort level on spend, which effort level should be the everyday default,
+and what class of work justifies xhigh/max. Record the answers as a
+decision entry so no future session re-litigates them.
+
+## Context strategy: /clear over compaction, deliberately
+
+This system is built around **explicit `/clear` + a rehydration file**
+(SESSION_HANDOFF.md) rather than automatic context compaction — and the
+operator should understand why, because it shapes daily workflow.
+
+Compaction works, and you can use it. But it summarizes mid-flight,
+choosing what to keep by algorithm at a moment you didn't pick — so
+performance degrades (the model continues from a lossy summary of its own
+reasoning) and token burn runs **higher**, not lower, because the
+compacted session keeps re-billing a larger, less relevant context than a
+fresh one would. A deliberate handoff inverts every one of those defaults:
+*you* choose the seam (a closed milestone, a natural pause), *you* write
+what the next session actually needs while it's still cheap to know, and
+`/clear` then costs one small rehydration read into a clean context.
+Measured in the origin projects, the handoff pattern made session death
+boring — crashes, resets, and multi-day gaps all resume cleanly from the
+same file. Treat compaction as the fallback for a session that must not
+stop, and as the expensive, lossy path — never the default.
 
 ## Provenance & license
 

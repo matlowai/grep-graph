@@ -94,6 +94,23 @@ paste graph-kit/KICKOFF_PROMPT.md to your coding agent
 follow portable-pack/INSTALL.md
 ```
 
+**Prefer a managed install?** Fork this repo, then add your fork as a git
+submodule instead of copying:
+
+```
+git submodule add https://github.com/<your-fork>/grep-graph docs/grep-graph
+```
+
+The kit stays a tracked dependency: improvements land in your fork once and
+`git submodule update --remote` propagates them to every project using it.
+Your per-project customizations never collide with updates, because
+templates are **copied out and adapted** (scaffolded docs live at your repo
+root), never edited inside the kit. Honest caveat: submodules add a little
+collaborator friction (`git clone --recurse-submodules`, one more concept
+to know), so the plain copy stays the zero-friction default — reach for
+the submodule when you run several projects and want kit updates to reach
+all of them from one place.
+
 ## Subagent tiers, and Fable-class effort levels
 
 [portable-pack/agents/](portable-pack/agents/) ships delegation-tier

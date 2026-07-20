@@ -132,6 +132,25 @@ your in-context copy is stale — re-read before the next edit.
 minutes. Cap everything (`timeout -k 5 <cap>`); on a hang, kill → rerun
 verbose → bisect → extract a standalone repro.
 
+**B6. Serial tool calls re-bill your whole context; batch them — or build a
+tool.**
+*Trigger:* you're about to run several independent reads/greps/commands one
+message at a time, or you notice the same multi-call sequence recurring
+across sessions.
+Every assistant turn re-bills the entire context prefix at cache-read
+rates — cheap per token, dominant in aggregate because every turn pays it
+on everything before it. K serial tool calls = K re-bills of a growing
+prefix; the same K calls batched in ONE message (parallel calls, or one
+`cat a b c` / compound command) = one re-bill. And when a sequence recurs
+session after session, stop batching it by hand: graduate it into a small
+committed script the repo owns, so it becomes ONE tool call forever — the
+session-start rehydrate script is the canonical example, and doing this
+also makes the ritual executable (a renamed file fails loudly instead of
+being silently skipped). *Incident:* a measured audit found mid-session
+batching waste was only ~4% of spend — but the rehydration ceremony, run
+one-file-per-turn after every context clear, taxed the exact economics
+that make clearing free; one script closed it.
+
 ## C. Trusting the wrong evidence
 
 **C1. Training-data "facts" about models, packages, and APIs are hypotheses.**

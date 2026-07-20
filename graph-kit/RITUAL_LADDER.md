@@ -172,3 +172,18 @@ is that each also makes the graph more testable or more navigable.)
   flew blind or grossly overpaid. A 2k-token router fixed both, and the
   id bridge repaired a grep contract that two coexisting id schemes had
   silently broken.
+
+- **Docs-current hash manifest** — *condition: doc drift keeps escaping
+  review, or your setting demands high compliance (regulated work, many
+  writers, low-trust automation).* Keep a manifest of content hashes for
+  the directories/files your docs describe; a checker compares current
+  hashes against the manifest and, on any mismatch without a matching
+  docs update, the session must go figure out what changed (read the diff
+  or the old commit) and update the documentation before the gate passes.
+  Be honest with yourself: for most projects this is **overkill ceremony**
+  — the checkpoint habit plus review catches the same drift for free. Its
+  value is that it's fully *mechanistic*: no judgment, no memory, no good
+  intentions required — which makes it the rare ritual you can push down
+  into infrastructure (a GitHub Action, a Claude Code hook, a pre-commit
+  hook, CI) and forget about. Adopt it as enforcement plumbing when the
+  condition really holds, not as daily practice.

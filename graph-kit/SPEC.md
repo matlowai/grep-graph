@@ -263,3 +263,46 @@ grep -rn "DEC-0007" src/   → every line of code that decision governs
 ```
 
 That last one is the payoff most teams miss — see CODE_POINTERS.md.
+
+## Why plain text, and not an actual graph database
+
+Fair question — this system *is* a graph, so why isn't it in Neo4j (or
+SQLite, or a vector store)? The direction was chosen deliberately:
+
+- **The graph lives where the agents already are.** File reads and grep
+  are every coding agent's native, zero-setup tools. No server to run, no
+  driver to install, no schema migration, no auth — an agent dropped into
+  the repo has full query access in its first tool call, and so does a
+  human with a text editor.
+- **The graph versions WITH the work it describes.** Nodes and edges ride
+  the same commits, branches, and PRs as the code. A decision and the code
+  it shaped diff together, revert together, and get reviewed together — a
+  side-database's history never lines up with the repo's.
+- **Write friction is a feature.** Text edits are visible in review;
+  database writes are invisible side effects. The discipline (append-only
+  ledgers, tombstones, reminder capsules) survives precisely because every
+  write is a reviewable diff.
+- **The queries you actually need are grep-shaped.** The load-bearing
+  query is one-hop reachability: "every place this ID matters." That is
+  literally `grep -rn "<ID>" .`. The frontier is a `blocked-by` scan. None
+  of the daily queries need traversal, aggregation, or joins — paying a
+  database's operational cost for queries grep answers instantly is
+  ceremony without a condition.
+- **Plain text is the most durable format there is.** It will outlive any
+  database engine, driver version, and this document.
+
+**When a real database starts making sense** — honest triggers, not
+never: (a) you routinely need queries grep can't express — transitive
+closure over long chains ("everything downstream of this decision"),
+aggregate analytics across thousands of nodes, similarity search; (b) the
+graph outgrows repo scale — many repos' graphs need to be queried as one;
+(c) non-agent consumers arrive — dashboards, org-wide search, reporting.
+
+If you get there, **derive the database; don't move the truth.** Keep the
+plain-text graph canonical and build a small indexer that parses nodes and
+edges into whatever store you need (the strict node/edge format was
+designed to be machine-parseable for exactly this reason). The database
+becomes a rebuildable materialized view — you gain the query power without
+giving up versioning-with-the-code, review-visible writes, or the
+zero-setup access agents depend on. A database that becomes the source of
+truth quietly deletes every property in the list above.

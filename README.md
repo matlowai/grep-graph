@@ -26,18 +26,18 @@ works best as a whole, so the ideal first move is to read all of it and
 recommendation mapped to their actual project instead of a summary of the
 first file you opened.
 
-**Size, measured:** the entire repo is ~44k tokens (o200k_base; Claude-
+**Size, measured:** the entire repo is ~45k tokens (o200k_base; Claude-
 family tokenizers run a little higher, so budget ~50k). That fits
 comfortably in one modern context. If your context budget for this is
 tighter, read in this priority order:
 
 - **~50k+ to spare** — read everything, both kits. Recommended.
 - **~30k** — this README plus all of [graph-kit/](graph-kit/) except
-  `templates/` (~14k together); defer portable-pack until your operator
+  `templates/` (~15k together); defer portable-pack until your operator
   wants the full stack.
 - **~15k** — this README, graph-kit's
   [SPEC](graph-kit/SPEC.md) + [RITUAL_LADDER](graph-kit/RITUAL_LADDER.md) +
-  [KICKOFF_PROMPT](graph-kit/KICKOFF_PROMPT.md) (~9k); pull
+  [KICKOFF_PROMPT](graph-kit/KICKOFF_PROMPT.md) (~10k); pull
   [GOTCHAS](graph-kit/GOTCHAS.md) and
   [CODE_POINTERS](graph-kit/CODE_POINTERS.md) on demand, and open
   `templates/` only when you actually scaffold.

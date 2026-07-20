@@ -1,5 +1,23 @@
 # PINS.md — pinned reference repos (.reference/ is a working area, not published)
 
+**Why this file is committed while the folder around it is not:** this is
+the kit's own reference-clone discipline (graph-kit RITUAL_LADDER, the
+"reference-clone directory + pin manifest" add-on) practicing on itself.
+The clones themselves are gitignored — they're bulky, they're other
+projects' licenses, and they don't belong in this repo's history. The
+manifest is the part worth keeping: it records exactly WHAT we studied, at
+WHICH commit, under WHAT license, and WHY — so any claim built on that
+study is re-verifiable ("re-fetch the pin, check the sha") instead of
+"trust our memory of their code."
+
+**Why these pins exist at all:** the README's "Where this fits" landscape
+comparison (Spec Kit, BMAD, Task Master, and kin) was not written from
+blog posts or training data — we cloned the actual repos and audited them
+locally (does BMAD's memlog really append-only? what does Spec Kit's
+memory/ directory actually hold?) before making any comparative claim.
+These rows are the receipts for that section: if you want to check our
+homework, every pin is one `git clone --depth 1` away at a known sha.
+
 Shallow clones (`git clone --depth 1`) pulled for the SOTA-2026-07 landscape
 survey. One row per pin: name · upstream · commit · pulled · license · why.
 

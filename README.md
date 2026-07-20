@@ -113,8 +113,19 @@ stop, and as the expensive, lossy path — never the default.
 ## Provenance & license
 
 Distilled 2026 from real deployments; incidents are anonymized but real.
-MIT — see [LICENSE](LICENSE). Contributions that generalize (new field
-lessons, new gotchas with receipts) are welcome; project-specific war
-stories should be genericized the way
+MIT — see [LICENSE](LICENSE). Open workstreams live in [TODO.md](TODO.md) —
+including benchmarking the kit itself honestly.
+
+## Make it better
+
+This is a let's-make-it-better project, not a finished artifact. If it
+helped you, **star it** so other people find it. **Fork it** and bend it to
+your project — that's literally the install instruction. And if you found
+something — a gotcha we're missing, a rule that didn't survive contact with
+your repo, a deployment story, a better way to say any of this — open an
+issue or PR. The best contributions are field lessons with receipts:
+genericize the war story the way
 [the field-lessons doc](portable-pack/upskilling/12-field-lessons-third-deployment.md)
-does it.
+does it (no project nouns, one anonymized incident per rule, the rule the
+incident minted). Every doc in here started life as somebody's bad
+afternoon; yours are welcome too.

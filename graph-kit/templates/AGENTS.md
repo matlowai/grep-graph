@@ -50,6 +50,27 @@ A session that skims re-derives settled ground.
 - Uncertain? PARK with a reminder. Silence is a decision.
 - Only the main session edits the graph docs during parallel work.
 
+## Monthly upstream + retrospective check (ask first, then fan out)
+
+At least once a month (track the last run's date in SESSION_HANDOFF.md),
+ASK the operator for permission to run a maintenance pass, then:
+
+1. **Check upstream** — read your harness's current docs for new features
+   and changed guidance. For Claude Code that's
+   https://code.claude.com/docs/en/best-practices and
+   https://code.claude.com/docs/en/overview (fan out from there); for other
+   harnesses, their release notes + best-practices pages.
+2. **Reflect it against this project** — what have we actually been working
+   on lately, and does any new capability (or retired assumption) change
+   how we should run?
+3. **Mine your own transcripts** — the session JSONL logs are data: look
+   for recurring friction, tool errors, permission-prompt hotspots, and
+   time sinks since the last check.
+4. **Propose, don't apply** — bring the operator a short list of concrete
+   changes worth making (new features to adopt, rules to retire, gotchas
+   to add), each with the evidence that motivated it. They pick; you
+   record the picks as DECs.
+
 ## Session end checklist
 
 - [ ] Every new decision is a DEC entry; every parked item has a reminder.
